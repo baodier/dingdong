@@ -13,14 +13,33 @@ public class SchoolPlanDepartment {
     private String name;
     private int reputation;
     private int style;
-    private Map<String, Integer> plans;
+    private Map<String, Pair> plans;
 
+    class Pair {
+        public int need;
+        public int left;
 
-    public Map<String, Integer> getPlans() {
+        public Pair(int n, int l) {
+            this.need = n;
+            this.left = l;
+        }
+    }
+    public boolean minusOneDepartment(String department) {
+        if (plans.containsKey(department)) {
+            Pair pair = plans.get(department);
+            if (pair.left > 0) {
+                plans.put(department, new Pair(pair.need, pair.left-1));
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Map<String, Pair> getPlans() {
         return plans;
     }
 
-    public void setPlans(Map<String, Integer> plans) {
+    public void setPlans(Map<String, Pair> plans) {
         this.plans = plans;
     }
 

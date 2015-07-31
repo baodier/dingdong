@@ -2,7 +2,8 @@ package Utils;
 
 import Element.DepartmentAdjust;
 import Element.SchoolAdjust;
-import Element.StudentPlan;
+import Element.StudentPlanDepartment;
+
 
 import java.io.*;
 import java.util.Collections;
@@ -23,7 +24,7 @@ public class ReadFile {
                     new FileInputStream(filename), "utf-8"));
             String line;
             while ((line = reader.readLine()) != null) {
-                StudentPlan plan = new StudentPlan();
+                StudentPlanDepartment plan = new StudentPlanDepartment();
                 String[] sp = line.trim().split("\t");
                 if (sp.length != 12) {
                     pr(line);
@@ -55,7 +56,7 @@ public class ReadFile {
         }
 
         Collections.sort(departmentAdjust.getStudentPlans());
-        for (StudentPlan plan : departmentAdjust.getStudentPlans())
+        for (StudentPlanDepartment plan : departmentAdjust.getStudentPlans())
             pr(plan.toString());
         return departmentAdjust;
     }

@@ -17,8 +17,10 @@ public class StudentPlanDepartment implements Comparable<StudentPlanDepartment> 
     private boolean canAdjust;
     private String admitted = "";
     private boolean inWaitingList = false;
+    private boolean failed = false;
 
     public StudentPlanDepartment() {
+        //考生志愿信息
         this.id = 0L;
         this.name = "";
         this.sex = true;
@@ -26,8 +28,11 @@ public class StudentPlanDepartment implements Comparable<StudentPlanDepartment> 
         this.score_small = 0;
         this.plans = new ArrayList<String>();
         this.canAdjust = false;
+
+        //录取结果
         this.admitted = "";
         this.inWaitingList = false;
+        this.failed = false;
     }
 
     public String plan2String() {
@@ -54,6 +59,38 @@ public class StudentPlanDepartment implements Comparable<StudentPlanDepartment> 
             return 1;
         }
         return 0;
+    }
+
+    public boolean admit(String department) {
+        if (department==null || department.equals(""))
+            return false;
+        this.admitted = department;
+        this.inWaitingList = false;
+        this.failed = false;
+        return true;
+    }
+
+    public void fail() {
+        this.admitted = "";
+        this.inWaitingList = false;
+        this.failed = true;
+    }
+
+    public void waitlist() {
+        this.admitted = "";
+        this.inWaitingList = true;
+        this.failed = false;
+    }
+
+    public String resultToString() {
+        String ret = id+"\t"+name+"\t";
+        if (this.inWaitingList)
+            ret += "\t等待扩招\t";
+        else if (this.failed)
+            ret += "\t\t退档处理";
+        else
+            ret += admitted+"\t\t";
+        return ret;
     }
 
     public long getId() {
