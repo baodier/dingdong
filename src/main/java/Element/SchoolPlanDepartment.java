@@ -1,5 +1,7 @@
 package Element;
 
+import Utils.Pair;
+
 import java.util.Map;
 
 /**
@@ -15,15 +17,7 @@ public class SchoolPlanDepartment {
     private int style;
     private Map<String, Pair> plans;
 
-    class Pair {
-        public int need;
-        public int left;
 
-        public Pair(int n, int l) {
-            this.need = n;
-            this.left = l;
-        }
-    }
     public boolean minusOneDepartment(String department) {
         if (plans.containsKey(department)) {
             Pair pair = plans.get(department);
@@ -35,6 +29,13 @@ public class SchoolPlanDepartment {
         return false;
     }
 
+    public String toString() {
+        String ret = this.name+"\t"+this.code+"\t"+this.level+"\t"+reputation+"\t";
+        for (String key : this.plans.keySet()){
+            ret += key+" -> "+plans.get(key).need+":"+plans.get(key).left+"\t";
+        }
+        return ret.trim();
+    }
     public Map<String, Pair> getPlans() {
         return plans;
     }

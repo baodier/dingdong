@@ -8,6 +8,8 @@ import java.util.List;
  * Created by liuyq on 2015/7/28.
  */
 public class DepartmentAdjust {
+
+
     private List<StudentPlanDepartment> studentPlans;
     private SchoolPlanDepartment schoolPlanDepartment;
 
@@ -18,7 +20,17 @@ public class DepartmentAdjust {
     public List<StudentPlanDepartment> getStudentPlans() {
         return studentPlans;
     }
+    public void setStudentPlans(List<StudentPlanDepartment> studentPlans) {
+        this.studentPlans = studentPlans;
+    }
 
+    public SchoolPlanDepartment getSchoolPlanDepartment() {
+        return schoolPlanDepartment;
+    }
+
+    public void setSchoolPlanDepartment(SchoolPlanDepartment schoolPlanDepartment) {
+        this.schoolPlanDepartment = schoolPlanDepartment;
+    }
     public void push(StudentPlanDepartment plan) {
         if (plan != null)
             this.studentPlans.add(plan);
@@ -40,7 +52,7 @@ public class DepartmentAdjust {
     public void processOneStudent(StudentPlanDepartment studentPlan) {
         for (String department : studentPlan.getPlans()) {
             if (schoolPlanDepartment.minusOneDepartment(department)) {
-                studentPlan.admit(department)
+                studentPlan.admit(department);
                 return;
             }
         }

@@ -42,7 +42,7 @@ public class StudentPlanDepartment implements Comparable<StudentPlanDepartment> 
         return ret.trim();
     }
     public String toString() {
-        return id+"\t"+name+"\t"+sex+"\t"+score_big+"\t"+score_small+"\t"+plan2String()+"\t"+canAdjust+"\t"+admitted+"\t"+inWaitingList+"\n";
+        return id+"\t"+name+"\t"+sex+"\t"+score_big+"\t"+score_small+"\t"+plan2String()+"\t"+canAdjust+"\t"+admitted+"\t"+inWaitingList;
     }
     public void pushPlan(String one) {
         if (!one.equals(""))
