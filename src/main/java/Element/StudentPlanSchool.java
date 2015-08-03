@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Created by liuyq on 2015/7/31.
  */
-public class StudentPlanSchool {
+public class StudentPlanSchool implements Comparable<StudentPlanSchool> {
     private long id;
     private String name;
     private boolean sex;
@@ -14,6 +14,39 @@ public class StudentPlanSchool {
     private List<String> plans;
     private String  district;
     private String school = "";
+    private boolean isAdmited = false;
+
+
+    //返回值：0：正确 1：输入格式有问题
+    public int admit(boolean admit, String schoolAdmitted) {
+        if (schoolAdmitted == null || schoolAdmitted.equals(""))
+            return 1;
+        if (admit)
+            this.school = schoolAdmitted;
+        else
+            this.school = "";
+        this.isAdmited = admit;
+        return 0;
+    }
+    @Override
+    public int compareTo(StudentPlanSchool o) {
+        // 按score_small排序
+        if (this.getScore_big() > o.getScore_big()) {
+            return -1;
+        }
+        if (this.getScore_big() < o.getScore_big()) {
+            return 1;
+        }
+        return 0;
+    }
+
+    public boolean isAdmited() {
+        return isAdmited;
+    }
+
+    public void setAdmited(boolean isAdmited) {
+        this.isAdmited = isAdmited;
+    }
 
 
     public long getId() {

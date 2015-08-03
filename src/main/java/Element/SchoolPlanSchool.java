@@ -1,5 +1,7 @@
 package Element;
 
+import Utils.Pair;
+
 /**
  * Created by liuyq on 2015/7/31.
  */
@@ -12,11 +14,49 @@ public class SchoolPlanSchool {
     private int plan;
     private int planBig;
     private double ratio;
+    private int left;
+
+    public SchoolPlanSchool() {
+        plan = 0;
+        left = 0;
+        planBig = 0;
+    }
 
     public void calPlanBig() {
         this.plan = (int)Math.ceil((double)plan * ratio);
     }
-    
+
+    public boolean minusOne() {
+        if (this.left > 0) {
+            this.left -= 1;
+            return true;
+        }
+        return false;
+    }
+
+    public int getLeft() {
+        return left;
+    }
+
+    public void setLeft(int left) {
+        this.left = left;
+    }
+
+    public int getPlanBig() {
+        return planBig;
+    }
+
+    public void setPlanBig(int planBig) {
+        this.planBig = planBig;
+    }
+
+    public double getRatio() {
+        return ratio;
+    }
+
+    public void setRatio(double ratio) {
+        this.ratio = ratio;
+    }
     public int getPlan() {
         return plan;
     }
