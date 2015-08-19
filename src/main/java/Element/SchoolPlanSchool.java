@@ -16,7 +16,7 @@ public class SchoolPlanSchool {
     public void calPlanBig() {
         this.plan = (int)Math.ceil((double)plan * ratio);
     }
-    
+
     public int getPlan() {
         return plan;
     }
