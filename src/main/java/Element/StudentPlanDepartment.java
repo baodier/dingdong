@@ -5,14 +5,62 @@ import java.util.*;
 /**
  * Created by liuyq on 2015/7/28.
  */
+class StudentInfoUserdInProcess implements Comparable<StudentInfoUserdInProcess> {
+    private int index_in_list;
+    private float score_used;
+    private String department;
+
+    public int getIndex_in_list() {
+        return index_in_list;
+    }
+
+    public void setIndex_in_list(int index_in_list) {
+        this.index_in_list = index_in_list;
+    }
+
+    public float getScore_used() {
+        return score_used;
+    }
+
+    public void setScore_used(float score_used) {
+        this.score_used = score_used;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    @Override
+    public int compareTo(StudentInfoUserdInProcess o) {
+        // 按score排序
+        if (this.getScore_used() > o.getScore_used()) {
+            return -1;
+        }
+        if (this.getScore_used() < o.getScore_used()) {
+            return 1;
+        }
+
+        // 保证分数相同的两个人的志愿不会交叉排放
+        if (this.getIndex_in_list() < o.getIndex_in_list())
+            return  1;
+        if (this.getIndex_in_list() > o.getIndex_in_list())
+            return -1;
+
+        return 0;
+    }
+}
 
 //学生填报的志愿：院系级别
 public class StudentPlanDepartment implements Comparable<StudentPlanDepartment> {
     private long id;
     private String name;
     private boolean sex;
-    private int score_big;
-    private int score_small;
+    private float score_big;
+    private float score_small;
     private List<String> plans;
     private boolean canAdjust;
     private String admitted = "";
@@ -117,7 +165,7 @@ public class StudentPlanDepartment implements Comparable<StudentPlanDepartment> 
         this.sex = sex;
     }
 
-    public int getScore_big() {
+    public float getScore_big() {
         return score_big;
     }
 
@@ -125,7 +173,7 @@ public class StudentPlanDepartment implements Comparable<StudentPlanDepartment> 
         this.score_big = score_big;
     }
 
-    public int getScore_small() {
+    public float getScore_small() {
         return score_small;
     }
 

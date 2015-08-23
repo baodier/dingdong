@@ -21,10 +21,34 @@ struct StudentInfo{
     8:list<StudentPlan> plans
 }
 
-service ProcessStudent{
-	LuquResultStudent supplyInquiry(1:StudentInfo studentinfo)
+struct SchoolInfo{
+    1:i32 priority,
+    2:i32 id,
+    3:string name,
+    4:i32 reputation,
+    5:i32 type,
+    6:string belongto,
+    7:map<string, i32> departPlan,
+    8:string province,
+    9:string city,
+    10:i32 money,
+    11:i32 sex,
+    12:i32 year,
+    13:string language
 }
 
+struct NeedAndReal{
+    1:string department,
+    2:i32 need,
+    3:i32 real
+}
+struct LuquResultSchool{
+    1:list<StudentInfo> students,
+    2:list<NeedAndReal> schoolResult
+}
+service LuquService{
+	LuquResultStudent modifyStudent(1:StudentInfo studentinfo)
+	LuquResultSchool modifySchool(1:SchoolInfo schoolinfo)
+}
 
-service
 

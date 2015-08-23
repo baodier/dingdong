@@ -2,19 +2,17 @@ package Element;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 
 /**
  * Created by liuyq on 2015/7/28.
  */
-public class DepartmentAdjust {
-
+public class DepartmentAdjust_2 {
 
     private List<StudentPlanDepartment> studentPlans;
     private SchoolPlanDepartment schoolPlanDepartment;
 
-    public DepartmentAdjust() {
+    public DepartmentAdjust_2() {
         this.studentPlans = new ArrayList<StudentPlanDepartment>();
     }
 
@@ -43,22 +41,10 @@ public class DepartmentAdjust {
 
     public void process() {
         // 先对所有学生按照实考分进行排序
-        //this.sort();
-
-        List<StudentInfoUserdInProcess> student_department_sort = new ArrayList<StudentInfoUserdInProcess>();
-        for (int i=0; i<this.studentPlans.size(); i++) {
-            for (String department : studentPlans.get(i).getPlans()) {
-                StudentInfoUserdInProcess studentInfoUserdInProcess = new StudentInfoUserdInProcess();
-                studentInfoUserdInProcess.setDepartment(department);
-                studentInfoUserdInProcess.setScore_used(studentPlans.get(i).getScore_small());
-                studentInfoUserdInProcess.setIndex_in_list(i);
-            }
-        }
+        this.sort();
 
         // 对学生逐个进行志愿录取
-        Collections.sort(student_department_sort);
-        HashSet<Integer> studentsAdmited = new HashSet<Integer>();
-        for (StudentInfoUserdInProcess studentInfoUserdInProcess : student_department_sort)
+        for (StudentPlanDepartment studentPlan : studentPlans)
             processOneStudent(studentPlan);
     }
 
